@@ -6,9 +6,13 @@
 <ul>
     {% for result in results %}
         <li>
-            {{ result.title }}
-            {{ result.url }}
-            {{ result.score }}
+            <h2><a href="{{ result.url}}">{{ result.title }}</a></h2>
+            <h6>Social media score: {{ result.score }}</h6>
+            <ul>
+                {% for sent in result.summary %}
+                    <li>{{ sent }}</li>
+                {% endfor %}
+            </ul>
         </li>
     {% endfor %}
 </ul>

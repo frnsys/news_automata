@@ -1,5 +1,5 @@
 from datetime import datetime
-from . import similarity, evaluator, extractor, concepts
+from . import similarity, evaluator, extractor, concepts, summarizer
 
 def get_articles_completed(url):
     # Extract data from the url.
@@ -17,6 +17,7 @@ def get_articles_completed(url):
     # Score each article
     for article in articles:
         article.score = evaluator.score(article.url)
+        article.summary = summarizer.summarize(article.title, article.text)
 
     # Sort the articles by score.
     articles.sort(key= lambda x: x.score, reverse=True)
