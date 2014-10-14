@@ -1,3 +1,8 @@
+"""
+This loads an argos.corpora article dump into mongo
+in a way this program can use.
+"""
+
 import json
 from news_automata.models import Article
 from news_automata.core.concepts import concepts
