@@ -1,4 +1,5 @@
-from . import evaluator, extractor, concepts
+from datetime import datetime
+from . import similarity, evaluator, extractor, concepts
 
 def get_articles(url):
     """
@@ -6,6 +7,3 @@ def get_articles(url):
     articles talking about the same thing.
     """
     raise NotImplementedError
-
-def get_articles_completed(url):
-    pass

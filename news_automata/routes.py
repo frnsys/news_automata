@@ -1,7 +1,8 @@
 from flask import render_template
 
 from news_automata import app
-from .core import get_articles, get_articles_completed
+from .core import get_articles
+from .core.completed import get_articles_completed
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

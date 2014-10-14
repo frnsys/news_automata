@@ -1,28 +1,27 @@
-from datetime import datetime, timedelta
-
-from news_automata.core import evaluator, extractor, concepts
-from news_automata.models import Article
+from datetime import datetime
+from news_automata.core import similarity, evaluator, extractor, concepts
 
 #url = sys.argv[1]
 url = 'http://dealbook.nytimes.com/2014/10/13/calculating-the-grim-costs-of-ebola/'
 
 # Extract data from the url.
-#entry_data, html = extractor.extract_entry_data(url)
+entry_data, html = extractor.extract_entry_data(url)
 
-#text = entry_data.cleaned_text
-#title = entry_data.title
-published = entry_data.publish_date or datetime.utcnow()
-#cons = concepts.concepts(' '.join([title, text]))
+text = entry_data.cleaned_text
+title = entry_data.title
+published = entry_data.publish_date or datetime.utcnow() # default to now, not very accurate tho
+cons = concepts.concepts(' '.join([title, text]))
 
-#social_media_score = evaluator.score(url)
+social_media_score = evaluator.score(url)
 
-# Filter by time first.
-articles = Article.objects(Q(created_at__lte=published + timedelta(days=3)) & Q(created_at__gte=published - timedelta(days=3)))
+articles = similarity.top_similar_articles(published, cons)
 
-# Filter by concepts.
-# We set some arbitrary concept overlap threshold, here we're using 5.
-articles = [article for article in articles if set(article.concepts).intersection(cons) > 5]
+# Score each article
+for article in articles:
+    article.score = evaluator.score(article.url)
 
+# Sort the articles by score.
+articles.sort(key= lambda x: x.score, reverse=True)
 print(articles)
 
 """

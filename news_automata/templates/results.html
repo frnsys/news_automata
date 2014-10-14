@@ -3,4 +3,14 @@
 
 <h1>results</h1>
 
+<ul>
+    {% for result in results %}
+        <li>
+            {{ result.title }}
+            {{ result.url }}
+            {{ result.score }}
+        </li>
+    {% endfor %}
+</ul>
+
 {% endblock %}
