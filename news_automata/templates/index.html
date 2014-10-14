@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        <input type="text" name="url" id="url">
+        <div class="actions">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+{% endblock %}
