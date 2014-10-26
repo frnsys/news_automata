@@ -1,13 +1,24 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<h1>results</h1>
+<h2>results</h2>
 
-<ul>
+<ul class="results">
     {% for result in results %}
         <li>
-            <h2><a href="{{ result.url}}">{{ result.title }}</a></h2>
-            <h6>Social media score: {{ result.score }}</h6>
+            <h2>
+                <a href="{{ result.url}}">{{ result.title }}</a>
+                {% if result.score > 2000 %}
+                    <b class="very_popular">very popular</b>
+                {% elif result.score > 1000 %}
+                    <b class="popular">popular</b>
+                {% elif result.score > 200 %}
+                    <b class="ok">ok, i guess</b>
+                {% else %}
+                    <b class="meh">meh</b>
+                {% endif %}
+            </h2>
+            <h5>Summary</h5>
             <ul>
                 {% for sent in result.summary %}
                     <li>{{ sent }}</li>
