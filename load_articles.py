@@ -10,7 +10,7 @@ from news_automata.core.concepts import concepts
 from datetime import datetime
 from dateutil.parser import parse
 
-datapath = '/home/ftseng/articles.json'
+datapath = '/home/ftseng/news_automata_articles.json'
 
 with open(datapath, 'r') as data:
     articles = json.load(data)

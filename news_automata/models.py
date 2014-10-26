@@ -7,6 +7,8 @@ class Article(db.Document):
     title = db.StringField(required=True)
     url = db.StringField(required=True)
     concepts = db.ListField(db.StringField())
+    summary = db.ListField(db.StringField())
+    score = db.FloatField()
 
     meta = {
             'allow_inheritance': True,
