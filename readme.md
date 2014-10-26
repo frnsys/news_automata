@@ -6,3 +6,10 @@ the same thing in the form of summaries with a social media popularity score.
 the articles are not fetched/scraped/etc dynamically but rather loaded from a corpus of
 politics and world news articles collected over the last several months by
 [argos.corpora](https://github.com/publicscience/argos.corpora) (at time of writing this is about ~50k articles).
+
+---
+
+there's also an endpoint to search by a concept name, e.g. "ebola" or "syria" or
+"obama".
+
+just POST `query=<your query>` to the `/search` endpoint.
