@@ -9,5 +9,4 @@ config.py
 *.rdb
 .webassets-cache
 bower/
-index.css
 config.py
